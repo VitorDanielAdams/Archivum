@@ -1,0 +1,38 @@
+[package]
+name = "archivum"
+version = "0.1.4"
+description = "Archivum - base de conhecimento navegÃƒÆ’Ã‚Â¡vel da sua codebase"
+authors = ["Vitor"]
+edition = "2021"
+
+# A lib ÃƒÆ’Ã‚Â© o que o Tauri compila; o main.rs sÃƒÆ’Ã‚Â³ chama run().
+[lib]
+name = "archivum_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+# feature "tray-icon" liga o ÃƒÆ’Ã‚Â­cone de bandeja (system tray / menu bar).
+tauri = { version = "2", features = ["tray-icon"] }
+# plugin do atalho global (abrir/fechar o painel de qualquer lugar do SO).
+tauri-plugin-global-shortcut = "2"
+# plugin de diÃƒÆ’Ã‚Â¡logo nativo (escolher a pasta do vault).
+tauri-plugin-dialog = "2"
+# plugin para iniciar o app junto com o sistema.
+tauri-plugin-autostart = "2"
+# varredura recursiva de diretÃƒÆ’Ã‚Â³rios (scan dos .md do vault).
+walkdir = "2"
+# motor de busca full-text (BM25, ranking, snippet, stemming).
+tantivy = "0.22"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Perfil de release menor/mais rÃƒÆ’Ã‚Â¡pido (importante p/ app que fica sempre aberto).
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

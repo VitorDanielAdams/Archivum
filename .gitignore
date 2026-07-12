@@ -1,0 +1,11 @@
+# dependências
+node_modules
+# build do frontend
+dist
+# build do Rust / Tauri
+src-tauri/target
+src-tauri/gen
+# logs e SO
+*.log
+.DS_Store
+Thumbs.db
